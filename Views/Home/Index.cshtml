@@ -1,0 +1,33 @@
+@model IEnumerable<Blog>
+
+<div class="bg-primary m-1 p-1 text-white">
+  <h4>Blog Listing</h4>
+</div>
+
+@if (Model.Count() == 0)
+
+{
+  <p>There are no blogs</p>
+}
+
+else
+
+{
+  <ul>
+    <!--displays each blog  -->
+    @foreach (Blog blog in Model)
+
+    {
+      <li>
+        <!-- this link makes the blog link clickable and it eill lead to the blogs page  -->
+        <a asp-action="BlogDetail" asp-route-id="@blog.BlogId">@blog.Name</a> |
+        <!-- this makes the delete link that will delete the blog  -->
+        <a asp-action="DeleteBlog" asp-route-id="@blog.BlogId">Delete</a>
+      </li>
+    }
+  </ul>
+}
+<hr />
+
+<!-- the link for adding a new blog --> 
+<a asp-action="AddBlog">New Blog</a>
